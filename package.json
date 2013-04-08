@@ -1,0 +1,28 @@
+{
+  "name": "authz",
+  "description": "Simple, dont-expect-much, web authorization framework.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Federico Cingolani",
+    "email": "mail@fcingolani.com.ar"
+  },
+  "keywords": [
+    "authorization",
+    "connect",
+    "express",
+    "restify"
+  ],
+  "devDependencies": {
+    "coffee-script": "*"
+  },
+  "main": "./index.js",
+  "bugs": {
+    "url": "https://github.com/fcingolani/node-authz/issues/new"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fcingolani/node-authz.git"
+  },
+  "homepage": "https://github.com/fcingolani/node-authz",
+  "readmeFilename": "README.md"
+}
