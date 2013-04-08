@@ -11,7 +11,7 @@ class module.exports extends EventEmitter
   
   require: (action)->
     (req, res, next) =>
-      if @can req.user action
+      if req.user? and @can req.user action
         next()
       else
         if @listeners(@unauthorizedEventName).length is 0

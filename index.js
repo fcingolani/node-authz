@@ -28,7 +28,7 @@
     exports.prototype.require = function(action) {
       var _this = this;
       return function(req, res, next) {
-        if (_this.can(req.user(action))) {
+        if ((req.user != null) && _this.can(req.user(action))) {
           return next();
         } else {
           if (_this.listeners(_this.unauthorizedEventName).length === 0) {
