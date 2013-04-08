@@ -4,10 +4,13 @@ class module.exports extends EventEmitter
   unauthorizedEventName: 'unauthorized'
 
   grant: (user, action) ->
+    if not user._grantedActions?
+      user._grantedActions = []
+    
     user._grantedActions.push action
     
   can: (user, action) ->
-    action in user._grantedActions
+    user._grantedActions? and action in user._grantedActions
   
   require: (action)->
     (req, res, next) =>

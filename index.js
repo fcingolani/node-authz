@@ -18,11 +18,14 @@
     exports.prototype.unauthorizedEventName = 'unauthorized';
 
     exports.prototype.grant = function(user, action) {
+      if (!(user._grantedActions != null)) {
+        user._grantedActions = [];
+      }
       return user._grantedActions.push(action);
     };
 
     exports.prototype.can = function(user, action) {
-      return __indexOf.call(user._grantedActions, action) >= 0;
+      return (user._grantedActions != null) && __indexOf.call(user._grantedActions, action) >= 0;
     };
 
     exports.prototype.require = function(action) {
