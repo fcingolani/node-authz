@@ -17,20 +17,18 @@
 
     exports.prototype.unauthorizedEventName = 'unauthorized';
 
-    exports.prototype.grantedActions = [];
-
-    exports.prototype.grant = function(action) {
-      return this.grantedActions.push(action);
+    exports.prototype.grant = function(user, action) {
+      return user._grantedActions.push(action);
     };
 
-    exports.prototype.can = function(action) {
-      return __indexOf.call(this.grantedActions, action) >= 0;
+    exports.prototype.can = function(user, action) {
+      return __indexOf.call(user._grantedActions, action) >= 0;
     };
 
     exports.prototype.require = function(action) {
       var _this = this;
       return function(req, res, next) {
-        if (_this.can(action)) {
+        if (_this.can(req.user(action))) {
           return next();
         } else {
           if (_this.listeners(_this.unauthorizedEventName).length === 0) {

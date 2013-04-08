@@ -3,17 +3,15 @@ EventEmitter = require('events').EventEmitter
 class module.exports extends EventEmitter
   unauthorizedEventName: 'unauthorized'
 
-  grantedActions: []
-
-  grant: (action) ->
-    @grantedActions.push action
+  grant: (user, action) ->
+    user._grantedActions.push action
     
-  can: (action) ->
-    action in @grantedActions
+  can: (user, action) ->
+    action in user._grantedActions
   
   require: (action)->
     (req, res, next) =>
-      if @can action
+      if @can req.user action
         next()
       else
         if @listeners(@unauthorizedEventName).length is 0
